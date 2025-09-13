@@ -2,12 +2,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Github, Menu } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ReminderBell } from "@/components/app/ReminderBell";
 import { APP_NAME, NAV_LINKS } from "@/lib/constants";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const showBell = pathname?.startsWith("/app");
   return (
     <header className="sticky top-0 z-40 w-full border-b border-white/10 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-zinc-950/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -30,6 +34,7 @@ export function Navbar() {
               <Github className="h-5 w-5" />
             </a>
           </Button>
+          {showBell && <ReminderBell />}
           <Button asChild>
             <Link href="/app">Launch App</Link>
           </Button>

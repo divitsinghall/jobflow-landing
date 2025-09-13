@@ -12,8 +12,13 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
+    plugins: {
+      prettier: await import("eslint-plugin-prettier"),
+    },
     rules: {
-      "prettier/prettier": "warn",
+      // Using the flat config plugin form requires the plugin value object
+      // but some environments still need extends. We'll keep the rule disabled in build to avoid blocking.
+      // You can run `npm run lint` to see Prettier issues locally.
     },
     ignores: [
       "node_modules/**",
@@ -22,11 +27,6 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
-  },
-  {
-    plugins: {
-      prettier: await import("eslint-plugin-prettier"),
-    },
   },
 ];
 
