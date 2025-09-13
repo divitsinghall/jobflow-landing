@@ -12,6 +12,9 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
+    rules: {
+      "prettier/prettier": "warn",
+    },
     ignores: [
       "node_modules/**",
       ".next/**",
@@ -19,6 +22,11 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+  },
+  {
+    plugins: {
+      prettier: await import("eslint-plugin-prettier"),
+    },
   },
 ];
 

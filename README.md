@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# JobFlow – Job Application Organizer
 
-## Getting Started
+A polished marketing landing page for JobFlow built with Next.js App Router, Tailwind CSS, shadcn-style UI, Framer Motion, lucide-react icons, and next-themes.
 
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Stack
+- Next.js (App Router, JavaScript)
+- Tailwind CSS (modern, glassmorphism aesthetic)
+- shadcn-style primitives (Radix UI under the hood)
+- Framer Motion (subtle animations)
+- lucide-react (icons)
+- next-themes (dark mode)
+- ESLint + Prettier
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Design decisions
+- Soft gradients and glass surfaces with thin borders (border-white/10 in dark).
+- Subtle grid background + radial gradient blobs in hero.
+- Micro-interactions: hover lift on cards, button shine, tabs crossfade.
+- Accessible by default: semantic HTML, focus-visible rings, keyboard nav.
 
-## Learn More
+## Customize brand/colors
+- Edit `app/globals.css` CSS variables (HSL tokens) for colors.
+- Update `public/logo.svg` and `public/og.png` for branding.
+- Change app name/tagline in `lib/constants.js`.
 
-To learn more about Next.js, take a look at the following resources:
+## Where to hook a real waitlist API
+- See `components/WaitlistDialog.jsx`. Replace the `console.log` in `submit()` with an API call (e.g., fetch to your endpoint). Show success/error toasts via `sonner`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
+- `npm run dev` – start dev server
+- `npm run build` – production build
+- `npm run start` – start production server
+- `npm run lint` – run ESLint
+- `npm run format` – run Prettier
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- Dark mode is persisted via `next-themes` and a toggle in the navbar.
+- App route `/app` is a placeholder and may 404.

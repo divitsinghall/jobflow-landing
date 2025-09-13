@@ -1,26 +1,88 @@
 @import "tailwindcss";
+@plugin "tailwindcss-animate";
 
+/* Design tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 250 20% 99%;
+  --foreground: 240 10% 3.9%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 5% 40%;
+  --border: 240 5% 84%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --primary: 252 83% 62%; /* indigo-violet midpoint */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 255 89% 66%;
+  --secondary-foreground: 0 0% 100%;
+  --ring: 252 83% 62%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
+    --border: 240 4% 26%;
+    --card: 240 6% 8%;
+    --card-foreground: 0 0% 98%;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Subtle grid/noise and gradient utilities */
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      hsl(var(--foreground) / 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      hsl(var(--foreground) / 0.05) 1px,
+      transparent 1px
+    );
+  background-size: 24px 24px;
+}
+
+.bg-radial {
+  background-image: radial-gradient(600px 200px at 50% -20%,
+      hsl(252 83% 62% / 0.25),
+      transparent 60%),
+    radial-gradient(500px 200px at 100% 20%,
+      hsl(270 91% 65% / 0.25),
+      transparent 60%);
+}
+
+.glass {
+  @apply border border-white/10 bg-white/60 dark:bg-white/5 backdrop-blur-xl shadow-xl;
+}
+
+.focus-ring {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-background;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
